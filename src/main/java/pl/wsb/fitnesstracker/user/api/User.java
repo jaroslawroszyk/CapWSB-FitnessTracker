@@ -6,14 +6,15 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
+import lombok.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "users")
-@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
+@Setter
+@Getter
 public class User {
 
     @Id
