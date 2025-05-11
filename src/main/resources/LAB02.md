@@ -2,10 +2,10 @@
 
 Zadania proszę realizować zgodnie z własnym tempem. Zadania mają pomóc w przygotowaniu do Egzaminu oraz zrozumieniu
 Frameworka Spring.
-Termin upływa po 7 dniach od rozpoczęciu laboratorium. Po przesłaniu zadania proszę o zaznaczenie na Moodle wykonanie
+Termin upływa po 14 dniach od rozpoczęciu laboratorium. Po przesłaniu zadania proszę o zaznaczenie na Moodle wykonanie
 zadania.
 
-## ZADANIE 1. Sieciowe API do operacji typu CRUD na klientach
+## ZADANIE 1. Sieciowe API do operacji typu CRUD na użytkownikach
 
 ### Potrzeba biznesowa
 
@@ -21,16 +21,16 @@ serwisu FitnessTracker:
 
 Stworzone API powinno pozwalać na:
 
-- [ ] wylistowanie podstawowych informacji o wszystkich użytkownikach zapisanych w systemie (tylko ID oraz nazwa
+- [ x ] wylistowanie podstawowych informacji o wszystkich użytkownikach zapisanych w systemie (tylko ID oraz nazwa
   użytkownika)
-- [ ] pobranie szczegółów dotyczących wybranego użytkownika (dowolny parametr: ID/imię & nazwisko/datę urodzenia/
-  e-mail)
-- [ ] utworzenie nowego użytkownika
-- [ ] usunięcie użytkownika (konkretny, np. konkretny ID danego uzytkownika)
+- [ x ] pobranie szczegółów dotyczących wybranego użytkownika (dowolny parametr: ID/imię & nazwisko/datę urodzenia/
+  e-mail) // dowolne? shouldReturnDetailsAboutUser_whenGettingUserByEmail narzuca ze przez email
+- [ x ] utworzenie nowego użytkownika
+- [ x ] usunięcie użytkownika (konkretny, np. konkretny ID danego uzytkownika)
 - [ ] wyszukiwanie użytkowników po e-mailu, bez rozróżniania wielkości liter, wyszukujące po fragmencie nazwy (zwracane
   tylko ID oraz e-mail użytkowników)
-- [ ] wyszukiwanie użytkowników po wieku starszym niż zdefiniowany
-- [ ] aktualizowanie użytkowników w systemie (dowolnie wybrany atrybut)
+- [ x ] wyszukiwanie użytkowników po wieku starszym niż zdefiniowany
+- [ x ] aktualizowanie użytkowników w systemie (dowolnie wybrany atrybut)
 
 ### Wymagania techniczne
 
