@@ -31,12 +31,6 @@ public interface UserProvider {
      */
     List<User> findAllUsers();
 
-//    /**
-//     Retrieves all users whose email contains the given part.
-//     * @param emailPart A part of the user's email to be matched // todo:
-//     * @return A {@link List} containing all found users.
-//     */
-
     /**
      * Retrieves all users whose email contains the given part.
      *
