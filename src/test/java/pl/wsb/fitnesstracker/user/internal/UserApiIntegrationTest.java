@@ -92,6 +92,17 @@ class UserApiIntegrationTest extends IntegrationTestBase {
     }
 
     @Test
+    void shouldReturnNotFound_whenGettingNonExistentUserId() throws Exception {
+        final Long nonExistentId = 999L;
+
+        mockMvc.perform(get("/v1/users/{id}", nonExistentId)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(log())
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$").doesNotExist());
+    }
+
+    @Test
     void shouldReturnDetailsAboutUser_whenGettingUserByEmail() throws Exception {
         User user1 = existingUser(generateUser());
 
