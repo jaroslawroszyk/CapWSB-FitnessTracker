@@ -32,9 +32,9 @@ Stworzone API powinno pozwalać na:
   domyślne, pobierające dane za pomocą `findAll()` oraz przetwarzające je za pomocą strumieni (`Stream`). Przykład
   znaleźć można w `UserRepository`
 - [x] rozwiązanie powinno spełniać zasady SOLID
-- [ ] testy integracyjne powinny poprawnie się wykonywać TrainingApiIntegrationTest
+- [x] testy integracyjne powinny poprawnie się wykonywać TrainingApiIntegrationTest
 - [ ] (OPCJONALNIE) rozwiązanie powinno być pokryte testami jednostkowymi (>80%) // todo: dodac testy :)
-- [x] rozwiązanie powinno być odpowiednio zhermetyzowane (nie udostępniać funkcjonalności pozostałym pakietom programu)
+- [x] rozwiązanie powinno być odpowiednio zhermetyzowane (nie Szudostępniać funkcjonalności pozostałym pakietom programu)
 - [x] kod powinien być odpowiednio udokumentowany za pomocą JavaDoc
 - [x] do kodu powinna zostać dołączona wyeksportowana kolekcja zapytań z programu Postman, pozwalająca przetestować
   stworzone API
