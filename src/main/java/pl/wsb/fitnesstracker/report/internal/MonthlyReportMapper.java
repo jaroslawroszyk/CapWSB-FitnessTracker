@@ -10,14 +10,15 @@ public class MonthlyReportMapper {
     public static final String EMAIL_TITLE = "Your monthly report is here!";
 
     private static final String EMAIL_BODY_TEMPLATE = """
-            Hey %s,
+            Witaj %s,
             
-            Here’s a quick look at your training progress last month:
-            📅 Month: %s
-            ✅ Trainings Completed: %d
-            Great job! Keep it up, and see you next month for another update.
+            Twoje podsumowanie treningów za miesiąc %s:
+                - Liczba wykonanych treningów: %d
             
-            Happy training!
+            Kontynuuj dobrą pracę, czekamy na kolejne wyniki!
+            
+            Pozdrawiamy, \s
+                Zespół Fitness Tracker
             """;
 
     public static EmailDto toEmailDto(MonthlyReport monthlyReport) {
