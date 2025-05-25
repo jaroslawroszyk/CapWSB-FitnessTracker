@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "6c0dd999-fa43-4bb1-bf22-9d879dc59018",
+		"name": "lab03-Roszyk",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44849323",
+		"_collection_link": "https://jarodev-2853500.postman.co/workspace/JaroDev's-Workspace~e6ce1599-c493-4598-80a6-2cf4c0da09fb/collection/44849323-6c0dd999-fa43-4bb1-bf22-9d879dc59018?action=share&source=collection_link&creator=44849323"
+	},
+	"item": [
+		{
+			"name": "Get all trainings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8069/v1/trainings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"v1",
+						"trainings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get trainings by user ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8069/v1/trainings/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"v1",
+						"trainings",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get trainings finished after date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8069/v1/trainings/finished/2024-01-18",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"v1",
+						"trainings",
+						"finished",
+						"2024-01-18"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Jaroslaw\",\r\n    \"lastName\": \"Roszyk\",\r\n    \"birthdate\": \"2001-07-28\",\r\n    \"email\": \"Jaroslaw.roszyk@nokia.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8069/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create training for created user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": 11, // take user id from previous post action\r\n  \"startTime\": \"2024-05-25T10:00:00Z\",\r\n  \"endTime\": \"2024-05-25T11:00:00Z\",\r\n  \"activityType\": \"RUNNING\",\r\n  \"distance\": 8.2,\r\n  \"averageSpeed\": 10.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8069/v1/trainings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"v1",
+						"trainings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get trainings by activity type",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8069/v1/trainings/activityType?activityType=TENNIS",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"v1",
+						"trainings",
+						"activityType"
+					],
+					"query": [
+						{
+							"key": "activityType",
+							"value": "TENNIS"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user by ID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": 11,\r\n  \"startTime\": \"2022-04-01T10:00:00\",\r\n  \"endTime\": \"2022-04-01T11:00:00\",\r\n  \"activityType\": \"TENNIS\",\r\n  \"distance\": 0.0,\r\n  \"averageSpeed\": 0.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8069/v1/trainings/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"v1",
+						"trainings",
+						"11"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
