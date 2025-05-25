@@ -1,6 +1,9 @@
 spring:
+  mail:
+    host: mail.example.local
+    from: no-reply@fitnesstracker.pl
   profiles:
-    active: loadInitialData
+    active: loadInitialData, fake-email
   datasource:
     url: "jdbc:h2:mem:testdb"
     driver-class-name: "org.h2.Driver"

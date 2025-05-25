@@ -45,7 +45,7 @@ class UserController {
         return userService.getUser(id)
                 .map(userMapper::toDto)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build()); // todo exception?
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/email")

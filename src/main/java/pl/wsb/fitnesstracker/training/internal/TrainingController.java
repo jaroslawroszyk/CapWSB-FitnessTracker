@@ -24,7 +24,7 @@ public class TrainingController {
      * Return all trainings.
      */
     @GetMapping
-    List<TrainingDto> findAllTrainings() { // todo rename to  getAllTrainings
+    List<TrainingDto> findAllTrainings() {
         return trainingService.findAllTrainings()
                 .stream()
                 .map(trainingMapper::toDto)
@@ -39,7 +39,7 @@ public class TrainingController {
     /*
     @PathVariable Long id oznacza: pobierz fragment {id} z URL-a i przypisz go do zmiennej id.
      */
-    List<TrainingDto> findTrainingsByUserId(@PathVariable Long userId) { // todo: should be getTrainingsByUserId
+    List<TrainingDto> findTrainingsByUserId(@PathVariable Long userId) {
         return trainingService.findTrainingsByUserId(userId)
                 .stream()
                 .map(trainingMapper::toDto)

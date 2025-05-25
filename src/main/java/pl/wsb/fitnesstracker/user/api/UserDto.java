@@ -5,7 +5,6 @@ import jakarta.annotation.Nullable;
 
 import java.time.LocalDate;
 
-//todo; move it to api also UserMapper
 public record UserDto(@Nullable Long id, String firstName, String lastName,
                @JsonFormat(pattern = "yyyy-MM-dd") LocalDate birthdate,
                String email) {
