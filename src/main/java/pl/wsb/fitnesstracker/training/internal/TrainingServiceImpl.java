@@ -16,7 +16,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-// TODO: Provide Implementation and correct the return type of the method getTraining
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -53,7 +52,7 @@ class TrainingServiceImpl implements TrainingProvider, TrainingService {
 
     @Override
     public Training createTraining(Training training, Long userId) {
-        if (training.getId() != null) { // coopilot ladnie podpowiada xD
+        if (training.getId() != null) {
             throw new IllegalArgumentException("Training has already DB ID, update is not permitted!");
         }
         User user = userProvider.getUser(userId).orElseThrow(
@@ -74,9 +73,6 @@ class TrainingServiceImpl implements TrainingProvider, TrainingService {
     @Override
     public Training updateTraining(Training training, Long trainingId, Long userId) {
         Training trainingToUpdate;
-//        if (training.getId() == null || !training.getId().equals(trainingId)) {
-//            throw new IllegalArgumentException("Training ID in the request body is not equal to the ID in the URL"); // new tests for that?
-//        }
 
         try {
             trainingToUpdate = trainingRepository.getReferenceById(trainingId);

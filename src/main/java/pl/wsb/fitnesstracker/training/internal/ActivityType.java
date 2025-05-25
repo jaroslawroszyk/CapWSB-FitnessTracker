@@ -1,9 +1,10 @@
 package pl.wsb.fitnesstracker.training.internal;
+
 import lombok.Getter;
 
 /*
  * Denotes a type of activity such as sports
-*/
+ */
 @Getter
 public enum ActivityType {
 
@@ -18,15 +19,4 @@ public enum ActivityType {
     ActivityType(String displayName) {
         this.displayName = displayName;
     }
-
-//    public String getDisplayName() {
-//        return displayName;
-//    }
-
 }
-
-/*
-
-Todo: czy potrzebuje z loombooka setter?
-
- */
