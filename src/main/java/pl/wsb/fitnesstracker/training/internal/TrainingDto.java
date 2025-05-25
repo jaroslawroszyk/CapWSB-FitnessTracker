@@ -2,6 +2,7 @@ package pl.wsb.fitnesstracker.training.internal;
 
 import lombok.Getter;
 import lombok.Setter;
+import pl.wsb.fitnesstracker.user.api.UserDto;
 
 import java.util.Date;
 

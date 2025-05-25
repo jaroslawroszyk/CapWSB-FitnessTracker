@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.wsb.fitnesstracker.training.api.Training;
+import pl.wsb.fitnesstracker.user.api.UserMapper;
 
 @Component
 /*
