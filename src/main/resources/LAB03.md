@@ -49,9 +49,9 @@ miesiącu.
 
 ### Wymagania funkcjonalne
 
-- [ ] w oparciu o ustalony zdefiniowany czas (co miesiąc) generowany jest raport z treningami dla każdego użytkownika z
+- [x] w oparciu o ustalony zdefiniowany czas (co miesiąc) generowany jest raport z treningami dla każdego użytkownika z
   danego miesiąca
-- [ ] raport wysyłany jest za pomocą e-mail z podsumowaniem do każdego użytkownika, ile treningów ma zarejestrowanych
+- [x] raport wysyłany jest za pomocą e-mail z podsumowaniem do każdego użytkownika, ile treningów ma zarejestrowanych
   łącznie
 
 ## ZADANIE 3 (opcjonalne). Sieciowe API do operacji typu CRUD na Statistics (bez użycia rekordów)
