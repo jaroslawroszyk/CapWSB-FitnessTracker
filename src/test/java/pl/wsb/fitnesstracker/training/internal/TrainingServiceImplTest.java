@@ -73,7 +73,7 @@ class TrainingServiceImplTest {
                 .hasMessageContaining("not found");
     }
 
-    private Training createEmptyTraining() {
+    private Training createEmptyTraining() { // reflection
         try {
             Constructor<Training> constructor = Training.class.getDeclaredConstructor();
             constructor.setAccessible(true);
