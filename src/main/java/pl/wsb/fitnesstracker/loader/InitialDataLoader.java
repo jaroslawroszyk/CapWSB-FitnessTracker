@@ -168,7 +168,6 @@ class InitialDataLoader {
     private List<Statistics> generateStatisticsData(List<User> users) {
         List<Statistics> statisticsData = new ArrayList<>();
 
-        // Generate statistics for each user
         Statistics statistics1 = new Statistics(users.get(0), 15, 150.5, 12000);
         Statistics statistics2 = new Statistics(users.get(1), 8, 80.2, 6500);
         Statistics statistics3 = new Statistics(users.get(2), 5, 25.0, 2000);
