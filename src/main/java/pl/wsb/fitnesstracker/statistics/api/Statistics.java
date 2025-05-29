@@ -29,4 +29,18 @@ public class Statistics {
     @Column(name = "total_calories_burned")
     private int totalCaloriesBurned;
 
+    /**
+     * Creates a new Statistics entity with the specified values.
+     *
+     * @param user The user associated with these statistics
+     * @param totalTrainings The total number of trainings
+     * @param totalDistance The total distance covered in trainings
+     * @param totalCaloriesBurned The total calories burned in trainings
+     */
+    public Statistics(User user, int totalTrainings, double totalDistance, int totalCaloriesBurned) {
+        this.user = user;
+        this.totalTrainings = totalTrainings;
+        this.totalDistance = totalDistance;
+        this.totalCaloriesBurned = totalCaloriesBurned;
+    }
 }
