@@ -181,7 +181,8 @@ class StatisticsServiceImplTest {
 
         // When/Then
         assertThatThrownBy(() -> statisticsService.deleteStatistics(1L))
-                .isInstanceOf(StatisticsNotFoundException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Statistics with ID 1 not found");
     }
 
     private Statistics createStatistics(Long id) {
