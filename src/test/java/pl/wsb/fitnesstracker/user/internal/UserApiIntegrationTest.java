@@ -115,6 +115,42 @@ class UserApiIntegrationTest extends IntegrationTestBase {
     }
 
     @Test
+    void shouldReturnUsersWithPartialEmailMatch_whenGettingUsersByPartialEmail() throws Exception {
+        // Create users with specific email addresses for testing
+        User user1 = new User("John", "Doe", LocalDate.now(), "john.doe@example.com");
+        User user2 = new User("Jane", "Smith", LocalDate.now(), "jane.smith@EXAMPLE.com");
+        User user3 = new User("Bob", "Johnson", LocalDate.now(), "bob.johnson@othermail.com");
+
+        existingUser(user1);
+        existingUser(user2);
+        existingUser(user3);
+
+        // Test case-insensitive partial match
+        mockMvc.perform(get("/v1/users/email").param("email", "example").contentType(MediaType.APPLICATION_JSON))
+                .andDo(log())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].id").exists())
+                .andExpect(jsonPath("$[0].email").value("john.doe@example.com"))
+                .andExpect(jsonPath("$[1].id").exists())
+                .andExpect(jsonPath("$[1].email").value("jane.smith@EXAMPLE.com"))
+                .andExpect(jsonPath("$[0].firstName").doesNotExist())
+                .andExpect(jsonPath("$[0].lastName").doesNotExist())
+                .andExpect(jsonPath("$[0].birthdate").doesNotExist());
+
+        // Test with a different partial match
+        mockMvc.perform(get("/v1/users/email").param("email", "OTHER").contentType(MediaType.APPLICATION_JSON))
+                .andDo(log())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].id").exists())
+                .andExpect(jsonPath("$[0].email").value("bob.johnson@othermail.com"))
+                .andExpect(jsonPath("$[0].firstName").doesNotExist())
+                .andExpect(jsonPath("$[0].lastName").doesNotExist())
+                .andExpect(jsonPath("$[0].birthdate").doesNotExist());
+    }
+
+    @Test
     void shouldReturnAllUsersOlderThan_whenGettingAllUsersOlderThan() throws Exception {
         User user1 = existingUser(generateUserWithDate(LocalDate.of(2000, 8, 11)));
         existingUser(generateUserWithDate(LocalDate.of(2024, 8, 11)));
@@ -155,7 +191,7 @@ class UserApiIntegrationTest extends IntegrationTestBase {
         final String USER_EMAIL = "mike.scott@domain.com";
 
         String creationRequest = """
-                
+
                 {
                 "firstName": "%s",
                 "lastName": "%s",
@@ -195,7 +231,7 @@ class UserApiIntegrationTest extends IntegrationTestBase {
         final String USER_EMAIL = "mike.scott@domain.com";
 
         String updateRequest = """
-                
+
                 {
                 "firstName": "%s",
                 "lastName": "%s",

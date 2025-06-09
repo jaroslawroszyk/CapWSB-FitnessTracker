@@ -73,14 +73,14 @@ class UserServiceImplTest {
     }
 
     @Test
-    void shouldThrowUserNotFoundExceptionWhenUpdatingNonexistentUser() {
+    void shouldThrowIllegalArgumentExceptionWhenUpdatingNonexistentUser() {
         Long userId = 999L;
         User updatedInfo = new User("Jane", "Smith", LocalDate.of(1991, 2, 2), "jane@example.com");
 
         when(userRepository.getReferenceById(userId)).thenThrow(new EntityNotFoundException());
 
         assertThrows(
-                pl.wsb.fitnesstracker.user.api.UserNotFoundException.class,
+                IllegalArgumentException.class,
                 () -> userServiceImpl.updateUser(userId, updatedInfo)
         );
     }

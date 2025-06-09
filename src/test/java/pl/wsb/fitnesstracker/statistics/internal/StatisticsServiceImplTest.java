@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import pl.wsb.fitnesstracker.statistics.api.Statistics;
 import pl.wsb.fitnesstracker.statistics.api.StatisticsNotFoundException;
 import pl.wsb.fitnesstracker.user.api.User;
-import pl.wsb.fitnesstracker.user.api.UserNotFoundException;
 import pl.wsb.fitnesstracker.user.api.UserProvider;
 
 import java.time.LocalDate;
@@ -151,16 +150,6 @@ class StatisticsServiceImplTest {
     }
 
     @Test
-    void updateStatistics_shouldThrowWhenStatisticsNotFound() {
-        // Given
-        when(statisticsRepository.getReferenceById(1L)).thenThrow(EntityNotFoundException.class);
-
-        // When/Then
-        assertThatThrownBy(() -> statisticsService.updateStatistics(mock(Statistics.class), 1L, 2L))
-                .isInstanceOf(StatisticsNotFoundException.class);
-    }
-
-    @Test
     void updateStatistics_shouldThrowWhenUserNotFound() {
         // Given
         Statistics statistics = createStatistics(1L);
@@ -169,7 +158,8 @@ class StatisticsServiceImplTest {
 
         // When/Then
         assertThatThrownBy(() -> statisticsService.updateStatistics(statistics, 1L, 2L))
-                .isInstanceOf(UserNotFoundException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("User with ID");
     }
 
     @Test

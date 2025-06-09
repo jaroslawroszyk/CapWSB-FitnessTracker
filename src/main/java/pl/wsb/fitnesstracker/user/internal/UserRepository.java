@@ -26,13 +26,34 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     /**
      * Query searching users by email address. It matches by partial match.
+     * This implementation uses a case-insensitive search for any part of the email.
+     *
+     * @param emailPart part of the email to search
+     * @return {@link List} containing found users
+     */
+    List<User> findByEmailContainingIgnoreCase(String emailPart);
+
+    /**
+     * Alternative implementation for finding users by email part.
+     * This is a custom implementation that provides the same functionality
+     * as findByEmailContainingIgnoreCase but with a different approach.
      *
      * @param emailPart part of the email to search
      * @return {@link List} containing found users
      */
     default List<User> findUsersByEmail(String emailPart) {
-        return findAll().stream()
-                .filter(user -> user.getEmail().toLowerCase().contains(emailPart.toLowerCase()))
+        if (emailPart == null || emailPart.isEmpty()) {
+            return List.of();
+        }
+
+        String lowerCaseEmailPart = emailPart.toLowerCase();
+
+        return findAll()
+                .stream()
+                .filter(user -> {
+                    String userEmail = user.getEmail();
+                    return userEmail != null && userEmail.toLowerCase().indexOf(lowerCaseEmailPart) >= 0;
+                })
                 .collect(toList());
     }
 
