@@ -1,44 +1,76 @@
 package pl.wsb.fitnesstracker.training.internal;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import pl.wsb.fitnesstracker.training.api.Training;
 import pl.wsb.fitnesstracker.user.api.UserMapper;
 
-@Component
-/*
-To adnotacja z Springa, która oznacza, że dana klasa jest komponentem Springa, czyli będzie automatycznie wykrywana przez mechanizm skanowania klas i rejestrowana jako bean w kontekście aplikacji Spring.
-
+/**
+ * Mapper class responsible for converting between Training entities and DTOs.
+ * 
+ * This class provides bidirectional conversion between domain entities and data transfer objects,
+ * ensuring proper separation of concerns between the API layer and the domain layer.
+ * 
+ * @author Fitness Tracker Team
+ * @version 2.0
  */
+@Component
 @RequiredArgsConstructor
-/*
-To adnotacja z Lomboka, która automatycznie generuje konstruktor dla wszystkich finałowych (final) lub oznaczonych jako @NonNull pól w klasie.
-*/
+@Slf4j
 public class TrainingMapper {
-    @Autowired
-    private final UserMapper trainingUserMapper;
 
-    TrainingDto toDto(Training training) {
+    /** Mapper for user entities within training objects */
+    private final UserMapper userMapper;
+
+    /**
+     * Converts a Training entity to a TrainingDto for API responses.
+     * 
+     * @param trainingEntity The Training entity to convert
+     * @return A TrainingDto containing the data from the entity
+     * @throws IllegalArgumentException if the training entity is null
+     */
+    public TrainingDto convertToDto(Training trainingEntity) {
+        if (trainingEntity == null) {
+            log.error("Cannot convert null training entity to DTO");
+            throw new IllegalArgumentException("Training entity cannot be null");
+        }
+
+        log.debug("Converting training entity with ID {} to DTO", trainingEntity.getId());
+
         return new TrainingDto(
-                training.getId(),
-                trainingUserMapper.toDto(training.getUser()),
-                training.getStartTime(),
-                training.getEndTime(),
-                training.getActivityType(),
-                training.getDistance(),
-                training.getAverageSpeed()
+                trainingEntity.getId(),
+                userMapper.toDto(trainingEntity.getUser()),
+                trainingEntity.getStartTime(),
+                trainingEntity.getEndTime(),
+                trainingEntity.getActivityType(),
+                trainingEntity.getDistance(),
+                trainingEntity.getAverageSpeed()
         );
     }
 
-    Training toEntity(CreateTrainingDTO dto) {
+    /**
+     * Converts a CreateTrainingDTO to a Training entity for persistence.
+     * 
+     * @param trainingDto The CreateTrainingDTO containing the data to convert
+     * @return A Training entity initialized with the data from the DTO
+     * @throws IllegalArgumentException if the training DTO is null
+     */
+    public Training convertToEntity(CreateTrainingDTO trainingDto) {
+        if (trainingDto == null) {
+            log.error("Cannot convert null training DTO to entity");
+            throw new IllegalArgumentException("Training DTO cannot be null");
+        }
+
+        log.debug("Converting training DTO to entity");
+
         return new Training(
-                null,
-                dto.getStartTime(),
-                dto.getEndTime(),
-                dto.getActivityType(),
-                dto.getDistance(),
-                dto.getAverageSpeed()
+                null, // ID is null for new entities
+                trainingDto.getStartTime(),
+                trainingDto.getEndTime(),
+                trainingDto.getActivityType(),
+                trainingDto.getDistance(),
+                trainingDto.getAverageSpeed()
         );
     }
 }
