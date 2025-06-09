@@ -62,11 +62,11 @@ public class TrainingController {
         log.info("Received request to create new training for user ID: {}", trainingDto.getUserId());
 
         // Convert DTO to entity and persist
-        Training trainingEntity = trainingMapper.toEntity(trainingDto);
+        Training trainingEntity = trainingMapper.convertToEntity(trainingDto);
         Training persistedTraining = trainingService.createTraining(trainingEntity, trainingDto.getUserId());
 
         // Convert persisted entity back to DTO
-        TrainingDto responseDto = trainingMapper.toDto(persistedTraining);
+        TrainingDto responseDto = trainingMapper.convertToDto(persistedTraining);
         log.info("Successfully created training with ID: {}", responseDto.getId());
 
         return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
@@ -84,11 +84,11 @@ public class TrainingController {
         log.info("Received request to update training ID: {} for user ID: {}", trainingId, trainingDto.getUserId());
 
         // Convert DTO to entity and update
-        Training trainingEntity = trainingMapper.toEntity(trainingDto);
+        Training trainingEntity = trainingMapper.convertToEntity(trainingDto);
         Training updatedTraining = trainingService.updateTraining(trainingEntity, trainingId, trainingDto.getUserId());
 
         // Convert updated entity back to DTO
-        TrainingDto responseDto = trainingMapper.toDto(updatedTraining);
+        TrainingDto responseDto = trainingMapper.convertToDto(updatedTraining);
         log.info("Successfully updated training with ID: {}", responseDto.getId());
 
         return responseDto;
@@ -107,7 +107,7 @@ public class TrainingController {
 
         List<TrainingDto> trainings = trainingService.findAllTrainings()
                 .stream()
-                .map(trainingMapper::toDto)
+                .map(trainingMapper::convertToDto)
                 .toList();
 
         log.info("Returning {} trainings", trainings.size());
@@ -126,7 +126,7 @@ public class TrainingController {
 
         List<TrainingDto> trainings = trainingService.findTrainingsByUserId(userId)
                 .stream()
-                .map(trainingMapper::toDto)
+                .map(trainingMapper::convertToDto)
                 .toList();
 
         log.info("Returning {} trainings for user ID: {}", trainings.size(), userId);
@@ -146,7 +146,7 @@ public class TrainingController {
 
         List<TrainingDto> trainings = trainingService.findTrainingsWithEndDateAfter(afterTime)
                 .stream()
-                .map(trainingMapper::toDto)
+                .map(trainingMapper::convertToDto)
                 .toList();
 
         log.info("Returning {} trainings completed after: {}", trainings.size(), afterTime);
@@ -165,7 +165,7 @@ public class TrainingController {
 
         List<TrainingDto> trainings = trainingService.findTrainingsByActivityType(activityType)
                 .stream()
-                .map(trainingMapper::toDto)
+                .map(trainingMapper::convertToDto)
                 .toList();
 
         log.info("Returning {} trainings with activity type: {}", trainings.size(), activityType);
